@@ -1,0 +1,22 @@
+--- dump1090-master.src/dump1090.c	2013-12-15 13:04:02.000000000 -0800
++++ dump1090-master/dump1090.c	2014-04-17 15:47:08.000000000 -0700
+@@ -532,7 +532,7 @@ void dumpRawMessageJS(char *descr, unsig
+         if (fixable > 255) fix2 = fixable >> 8;
+     }
+ 
+-    if ((fp = fopen("frames.js","a")) == NULL) {
++    if ((fp = fopen("/usr/share/dump1090/frames.js","a")) == NULL) {
+         fprintf(stderr, "Error opening frames.js: %s\n", strerror(errno));
+         exit(1);
+     }
+@@ -2233,8 +2233,8 @@ int handleHTTPRequest(struct client *c)
+         struct stat sbuf;
+         int fd = -1;
+ 
+-        if (stat("gmap.html",&sbuf) != -1 &&
+-            (fd = open("gmap.html",O_RDONLY)) != -1)
++        if (stat("/usr/share/dump1090/gmap.html",&sbuf) != -1 &&
++            (fd = open("/usr/share/dump1090/gmap.html",O_RDONLY)) != -1)
+         {
+             content = malloc(sbuf.st_size);
+             if (read(fd,content,sbuf.st_size) == -1) {
